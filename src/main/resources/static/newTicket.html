@@ -8,6 +8,7 @@
     Add new ticket
     <div>
         <form action="#" th:action="@{/mvc/newTicket}" th:object="${ticketDTO}" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <p>Ticket type:
                 <select th:field="*{type}">
                     <option value="0">select ticket type</option>
