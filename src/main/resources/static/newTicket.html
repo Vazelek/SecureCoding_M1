@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+</head>
+<body>
+    Add new ticket
+    <div>
+        <form action="#" th:action="@{/mvc/newTicket}" th:object="${ticketDTO}" method="post">
+            <p>Ticket type:
+                <select th:field="*{type}">
+                    <option value="0">select ticket type</option>
+                    <option th:each="type : ${ticketTypeList}" th:value="${type}" th:text="${type}"></option>
+                </select>
+            </p>
+            <p>Event name: <input type="text" th:field="*{eventName}" /></p>
+            <p>Venue: <input type="text" th:field="*{venue}" /></p>
+            <p>Description: <input type="text" th:field="*{description}" /></p>
+            <p>Date and time: <input type="datetime-local"  th:field="*{eventDateTimeString}" /></p>
+            <p>Price: <input type="number" th:field="*{price}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </div>
+</body>
+</html>

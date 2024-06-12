@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+</head>
+<body>
+<h1>Ticket search</h1>
+<div>
+    <form action="#" th:action="@{/mvc/ticket}" th:object="${ticketFormDTO}" method="post">
+        <p>Ticket type:
+            <select th:field="*{type}">
+                <option value="0">Select ticket type</option>
+                <option th:each="type : ${ticketTypeList}" th:value="${type}" th:text="${type}"></option>
+            </select>
+        </p>
+        <p>Event name: <input type="text" th:field="*{eventName}" /></p>
+        <p>Venue: <input type="text" th:field="*{venue}" /></p>
+        <p>Description: <input type="text" th:field="*{description}" /></p>
+        <p>Date and time
+            From: <input type="datetime-local"  th:field="*{eventDateTimeFromString}" />
+            To: <input type="datetime-local"  th:field="*{eventDateTimeToString}" />
+        </p>
+        <p>Price:
+            From: <input type="number" th:field="*{priceFrom}" />
+            To: <input type="number" th:field="*{priceTo}" />
+        </p>
+        <p><input type="submit" value="Search tickets" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <h2>Tickets list</h2>
+
+    <table border="1">
+        <tr>
+            <th>TYPE</th>
+            <th>EVENT NAME</th>
+            <th>VENUE</th>
+            <th>DESCRIPTION</th>
+            <th>DATE AND TIME</th>
+            <th>PRICE</th>
+        </tr>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.type}">Type</td>
+            <td th:text="${ticket.eventName}">Event name</td>
+            <td th:text="${ticket.venue}">Venue</td>
+            <td th:text="${ticket.description}">Venue</td>
+            <td th:text="${ticket.eventDateTimeString}">Venue</td>
+            <td th:text="${ticket.price}">Venue</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
