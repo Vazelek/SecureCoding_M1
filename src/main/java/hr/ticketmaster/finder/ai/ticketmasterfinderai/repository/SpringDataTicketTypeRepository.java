@@ -1,7 +1,6 @@
 package hr.ticketmaster.finder.ai.ticketmasterfinderai.repository;
 
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketType;
-import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketTypeEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

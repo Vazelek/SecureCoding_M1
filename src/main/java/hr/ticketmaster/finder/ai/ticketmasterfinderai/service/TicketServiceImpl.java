@@ -8,8 +8,6 @@ import hr.ticketmaster.finder.ai.ticketmasterfinderai.dto.TicketDTO;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.dto.TicketFormDTO;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.Ticket;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketFilter;
-import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketTypeEnum;
-import hr.ticketmaster.finder.ai.ticketmasterfinderai.repository.TicketRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;

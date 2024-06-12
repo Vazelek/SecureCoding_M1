@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -24,15 +25,15 @@ public class SearchTicketsController {
 
     private TicketService ticketService;
     private CustomSpringEventPublisher publisher;
-
+    private static final String TICKETS = "tickets";
     @GetMapping("/ticket")
     public String fetchAllTickets(Model model, HttpServletRequest request) {
 
         request.getSession(true);
         publisher.publishCustomEvent("Ticket search started!");
 
-        if(!model.containsAttribute("tickets")) {
-            model.addAttribute("tickets",
+        if(!model.containsAttribute(TICKETS)) {
+            model.addAttribute(TICKETS,
                     ticketService.findAll());
         }
 
@@ -44,13 +45,14 @@ public class SearchTicketsController {
         model.addAttribute("ticketFormDTO",
                 new TicketFormDTO());
 
-        return "tickets";
+        return TICKETS;
     }
 
     @PostMapping("/ticket")
-    public String filterTickets(Model model, TicketFormDTO ticketFormDTO) {
+    public String filterTickets(Model model, TicketFormDTO ticketFormDTO, SessionStatus sessionStatus) {
         List<TicketDTO> ticketDTOList = ticketService.filterByCriteria(ticketFormDTO);
-        model.addAttribute("tickets", ticketDTOList);
+        model.addAttribute(TICKETS, ticketDTOList);
+        sessionStatus.setComplete();
         return "redirect:/mvc/ticket";
     }
 

@@ -18,6 +18,8 @@ public class TicketRepositoryMock implements TicketRepository {
 
     private static List<Ticket> ticketList;
 
+    private static final String TICKET_DESCRIPTION = "Rezultat je poznat";
+
     static {
         ticketList = new ArrayList<>();
 
@@ -26,7 +28,7 @@ public class TicketRepositoryMock implements TicketRepository {
         //firstTicket.setType(TicketTypeEnum.SPORT);
         firstTicket.setEventName("FOOTBALL MATCH: DINAMO ZAGREB - LOKOMOTIVA");
         firstTicket.setVenue("Stadion Maksimir (posljednja utakmica)");
-        firstTicket.setDescription("Rezultat je poznat");
+        firstTicket.setDescription(TICKET_DESCRIPTION);
         firstTicket.setEventDateTime(LocalDateTime.now().plusDays(1));
         firstTicket.setPrice(new BigDecimal("20"));
 
@@ -35,7 +37,7 @@ public class TicketRepositoryMock implements TicketRepository {
         //secondTicket.setType(TicketTypeEnum.SPORT);
         secondTicket.setEventName("FOOTBALL MATCH: HAJDUK - LOKOMOTIVA");
         secondTicket.setVenue("Stadion Poljud (posljednja utakmica)");
-        secondTicket.setDescription("Rezultat je poznat");
+        secondTicket.setDescription(TICKET_DESCRIPTION);
         secondTicket.setEventDateTime(LocalDateTime.now().plusDays(10));
         secondTicket.setPrice(new BigDecimal("21"));
 
@@ -44,7 +46,7 @@ public class TicketRepositoryMock implements TicketRepository {
         //thirdTicket.setType(TicketTypeEnum.SPORT);
         thirdTicket.setEventName("FOOTBALL MATCH: SLAVEN BELUPO - RIJEKA");
         thirdTicket.setVenue("Stadion Gradski (posljednja utakmica)");
-        thirdTicket.setDescription("Rezultat je poznat");
+        thirdTicket.setDescription(TICKET_DESCRIPTION);
         thirdTicket.setEventDateTime(LocalDateTime.now().plusDays(20));
         thirdTicket.setPrice(new BigDecimal("22"));
 
@@ -53,7 +55,7 @@ public class TicketRepositoryMock implements TicketRepository {
         //fourthTicket.setType(TicketTypeEnum.SPORT);
         fourthTicket.setEventName("FOOTBALL MATCH: DINAMO ZAGREB - RUDEŠ");
         fourthTicket.setVenue("Stadion Maksimir (posljednja utakmica)");
-        fourthTicket.setDescription("Rezultat je poznat");
+        fourthTicket.setDescription(TICKET_DESCRIPTION);
         fourthTicket.setEventDateTime(LocalDateTime.now().plusDays(30));
         fourthTicket.setPrice(new BigDecimal("23"));
 

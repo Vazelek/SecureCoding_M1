@@ -1,12 +1,7 @@
 package hr.ticketmaster.finder.ai.ticketmasterfinderai.controller.rest;
 
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.Ticket;
-import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketTypeEnum;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

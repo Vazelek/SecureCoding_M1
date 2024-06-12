@@ -1,7 +1,6 @@
 package hr.ticketmaster.finder.ai.ticketmasterfinderai.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.math.BigDecimal;
 
