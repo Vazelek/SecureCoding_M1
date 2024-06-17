@@ -1,11 +1,17 @@
 package hr.ticketmaster.finder.ai.ticketmasterfinderai.repository;
 
+import hr.ticketmaster.finder.ai.ticketmasterfinderai.exception.IllegalClassException;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.Ticket;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketFilter;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.model.TicketTypeEnum;
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.utils.ConversionUtils;
+import hr.ticketmaster.finder.ai.ticketmasterfinderai.whitelist.WhitelistValidator;
 import org.springframework.stereotype.Repository;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,6 +21,8 @@ import java.util.Optional;
 
 @Repository
 public class TicketRepositoryMock implements TicketRepository {
+
+    private static final String FILE_NAME = "dat/ticket.dat";
 
     private static List<Ticket> ticketList;
 
@@ -73,6 +81,18 @@ public class TicketRepositoryMock implements TicketRepository {
         ticketList.add(thirdTicket);
         ticketList.add(fourthTicket);
         ticketList.add(fifthTicket);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            oos.writeObject(ticketList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            WhitelistValidator.validateSerializedFile(FILE_NAME);
+        } catch (IOException | IllegalClassException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
