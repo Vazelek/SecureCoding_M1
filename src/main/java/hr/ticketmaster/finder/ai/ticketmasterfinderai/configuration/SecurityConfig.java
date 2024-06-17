@@ -40,8 +40,10 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/auth/api/v1/login").permitAll()
+                        .requestMatchers("/auth/api/v1/refreshToken").permitAll()
                         .requestMatchers("/auth/api/v1/**").authenticated()
-                        .requestMatchers("/**").authenticated())
+                        .requestMatchers("/mvc/**").authenticated()
+                        .requestMatchers("/rest/**").authenticated())
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
