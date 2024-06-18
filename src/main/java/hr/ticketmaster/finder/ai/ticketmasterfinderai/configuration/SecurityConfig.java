@@ -46,8 +46,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/api/v1/login").permitAll()
                         .requestMatchers("/auth/api/v1/refreshToken").permitAll()
                         .requestMatchers("/auth/api/v1/**").authenticated()
-                        .requestMatchers("/mvc/**").permitAll()
-                        .requestMatchers("/rest/**").permitAll())
+                        .requestMatchers("/mvc/**").authenticated()
+                        .requestMatchers("/rest/**").authenticated())
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
