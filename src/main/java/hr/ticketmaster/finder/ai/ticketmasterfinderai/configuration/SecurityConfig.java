@@ -46,8 +46,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/api/v1/login").permitAll()
                         .requestMatchers("/auth/api/v1/refreshToken").permitAll()
                         .requestMatchers("/auth/api/v1/**").authenticated()
-                        .requestMatchers("/mvc/**").authenticated()
-                        .requestMatchers("/rest/**").authenticated())
+                        .requestMatchers("/mvc/**").permitAll()
+                        .requestMatchers("/rest/**").permitAll())
                 .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
@@ -56,7 +56,7 @@ public class SecurityConfig {
                         headers.xssProtection(
                                 xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK)
                         ).contentSecurityPolicy(
-                                cps -> cps.policyDirectives("script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestor 'self'; font-src 'self'; media-src 'self'; object-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'self';")
+                                cps -> cps.policyDirectives("script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'self'; font-src 'self'; media-src 'self'; object-src 'self'; manifest-src 'self'; form-action 'self';")
                         ));
 
         return http.build();
