@@ -8,6 +8,7 @@
 <h1>Ticket search</h1>
 <div>
     <form action="#" th:action="@{/mvc/ticket}" th:object="${ticketFormDTO}" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <p>Ticket type:
             <select th:field="*{type}">
                 <option value="0">Select ticket type</option>
