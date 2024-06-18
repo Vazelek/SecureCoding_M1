@@ -40,6 +40,9 @@ public class WhitelistValidator {
                 }
             }
         }
+        catch (EOFException ex) {
+            System.out.println("End of dat file");
+        }
         catch (Exception ex) {
             throw new IllegalClassException("There was a problem with deserialization!", ex);
         }

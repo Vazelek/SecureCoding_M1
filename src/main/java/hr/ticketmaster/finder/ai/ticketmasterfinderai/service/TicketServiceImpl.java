@@ -85,11 +85,13 @@ public class TicketServiceImpl implements TicketService {
         TicketType ticketType = new TicketType();
         ticketType.setName(ticketDTO.getType());
 
+        System.err.println(ticketDTO);
+
         return new Ticket(ticketType,
                             ticketDTO.getEventName(),
                             ticketDTO.getVenue(),
                             ticketDTO.getDescription(),
-                            LocalDateTime.parse(ticketDTO.getEventDateTimeString(), ConversionUtils.FORMATTER),
+                                LocalDateTime.parse(ticketDTO.getEventDateTimeString(), ConversionUtils.FORMATTER),
                             ticketDTO.getPrice()
                 );
     }

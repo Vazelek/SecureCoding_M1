@@ -7,6 +7,8 @@ import hr.ticketmaster.finder.ai.ticketmasterfinderai.publisher.CustomSpringEven
 import hr.ticketmaster.finder.ai.ticketmasterfinderai.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,8 @@ public class SearchTicketsController {
     private TicketService ticketService;
     private CustomSpringEventPublisher publisher;
     private static final String TICKETS = "tickets";
+
+    @Secured("ROLE_USER")
     @GetMapping("/ticket")
     public String fetchAllTickets(Model model, HttpServletRequest request) {
 
@@ -48,6 +52,8 @@ public class SearchTicketsController {
         return TICKETS;
     }
 
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/ticket")
     public String filterTickets(Model model, TicketFormDTO ticketFormDTO, SessionStatus sessionStatus) {
         List<TicketDTO> ticketDTOList = ticketService.filterByCriteria(ticketFormDTO);

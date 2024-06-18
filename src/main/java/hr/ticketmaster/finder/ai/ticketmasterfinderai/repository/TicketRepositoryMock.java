@@ -84,6 +84,7 @@ public class TicketRepositoryMock implements TicketRepository {
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(ticketList);
+//            oos.writeObject(new BigDecimal(10));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
