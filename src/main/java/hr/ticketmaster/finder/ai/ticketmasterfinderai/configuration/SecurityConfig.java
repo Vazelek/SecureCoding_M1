@@ -40,7 +40,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/mvc/**", "/rest/**", "/auth/api/v1/**")
-                )
+                ) // Protect against anti csrf token
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/auth/api/v1/login").permitAll()
@@ -57,7 +57,7 @@ public class SecurityConfig {
                                 xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK)
                         ).contentSecurityPolicy(
                                 cps -> cps.policyDirectives("script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'self'; font-src 'self'; media-src 'self'; object-src 'self'; manifest-src 'self'; form-action 'self';")
-                        ));
+                        )); // Set the Content Security Policy header
 
         return http.build();
 //        return http.csrf().disable()
